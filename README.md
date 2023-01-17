@@ -46,6 +46,6 @@ The code in this repository will compile and run on Windows, macOS and Linux.
   - Red: average grade less than 50%
 
 Extras for if you have time:
-- [ ] Implement the `Delete` method of `IStudentService`
-- [ ] Add delete endpoint to the API
-- [ ] Add delete functionality to the frontend
+- [x] Implement the `Delete` method of `IStudentService`
+- [x] Add delete endpoint to the API
+- [x] Add delete functionality to the frontend
