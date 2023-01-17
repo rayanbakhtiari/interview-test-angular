@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using FluentValidation;
+using MediatR;
 using StudentApi.Models.Students;
 using StudentApi.Services;
 using System;
@@ -32,14 +33,17 @@ namespace StudentApi.Mediatr.Students
     {
         private readonly IStudentsService studentsService;
         private readonly IStudentMapper mapper;
+        private readonly IValidator<CreateStudentRequest> validator;
 
-        public CreateStudentHandler(IStudentsService studentsService, IStudentMapper mapper)
+        public CreateStudentHandler(IStudentsService studentsService, IStudentMapper mapper, IValidator<CreateStudentRequest> validator)
         {
             this.studentsService = studentsService;
             this.mapper = mapper;
+            this.validator = validator;
         }
         public Task<CreateStudentResponse> Handle(CreateStudentRequest request, CancellationToken cancellationToken)
         {
+            validator.ValidateAndThrow(request);
             Student student = mapper.Map(request);
             var response = new CreateStudentResponse()
             {

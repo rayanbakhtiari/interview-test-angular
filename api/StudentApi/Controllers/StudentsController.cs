@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using FluentValidation;
+using FluentValidation.Results;
 
 namespace StudentApi.Controllers
 {
@@ -42,11 +44,22 @@ namespace StudentApi.Controllers
         }
         [HttpPost]
         [ProducesResponseType(typeof(CreateStudentResponse), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(List<ValidationFailure>), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Post([FromBody] CreateStudentRequest request)
         {
-            var response = await Mediator.Send(request);
-            return StatusCode(StatusCodes.Status201Created,response);
+            try
+            {
+                var response = await Mediator.Send(request);
+                return StatusCode(StatusCodes.Status201Created, response);
+            }
+            catch (ValidationException ex) {
+                return BadRequest(ex.Errors);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

@@ -27,13 +27,14 @@ export class StudentComponent implements OnInit {
   }
   save()
   {
-
-    var student: CreateStudentRequest = this.studentForm.value;
-    var url = this.baseUrl + 'students';
-    this.http.post<CreateStudentResponse>(this.baseUrl + 'students',student).subscribe(result => {
-      this.router.navigateByUrl("");
-    });
-    console.log("saved", this.studentForm.getRawValue());
+    if (this.studentForm.valid) {
+      var student: CreateStudentRequest = this.studentForm.value;
+      var url = this.baseUrl + 'students';
+      this.http.post<CreateStudentResponse>(url, student).subscribe(result => {
+        this.router.navigateByUrl("");
+      }, error => console.error(error));
+      console.log("saved", this.studentForm.getRawValue());
+    }
   }
 
 }
