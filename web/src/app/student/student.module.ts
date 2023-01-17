@@ -5,15 +5,17 @@ import { StudentRoutingModule } from './student-routing.module';
 import { StudentComponent } from './student/student.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
-  declarations: [StudentComponent],
+  declarations: [StudentComponent ],
   imports: [
     CommonModule,
     StudentRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule,
   ]
 })
 export class StudentModule { }

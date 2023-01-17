@@ -13,17 +13,17 @@ export class DialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
 
   onNoClick(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
   onYesClick(): void {
-
+    this.dialogRef.close(true);
   }
 
   ngOnInit() {
   }
 
 }
-export class DialogData
+export interface DialogData
 {
   title: string;
   message: string;

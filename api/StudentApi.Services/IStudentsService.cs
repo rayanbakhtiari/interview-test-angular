@@ -14,5 +14,6 @@ namespace StudentApi.Services
         bool AddStudent(Student student);
 
         bool DeleteStudent(Student student);
+        Student GetStudentById(int id);
     }
 }

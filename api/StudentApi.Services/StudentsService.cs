@@ -64,7 +64,7 @@ namespace StudentApi.Services
         /// <exception cref="NotImplementedException"></exception>
         public bool DeleteStudent(Student student)
         {
-            throw new NotImplementedException();
+            return students.Remove(student);
         }
 
         /// <summary>
@@ -74,6 +74,11 @@ namespace StudentApi.Services
         public List<Student> GetAllStudents()
         {
             return students;
+        }
+
+        public Student GetStudentById(int id)
+        {
+            return students.FirstOrDefault(x => x.Id == id);
         }
     }
 }

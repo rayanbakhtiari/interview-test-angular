@@ -10,6 +10,7 @@
       <th>Email</th>
       <th>Major</th>
       <th>Average Grade</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -21,6 +22,7 @@
       <td [ngClass]="{'green-grade': student.averageGrade >= 80,
       'orange-grade': student.averageGrade >= 50 && student.averageGrade < 80,
       'red-grade': student.averageGrade < 50}">{{ student.averageGrade }}</td>
+      <td><Button type="button" class="btn btn-danger" (click)="openDialog(student.id)">Delete</Button></td>
     </tr>
   </tbody>
 </table>

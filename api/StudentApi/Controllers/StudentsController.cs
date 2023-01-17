@@ -61,5 +61,25 @@ namespace StudentApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpDelete("{id}")]
+        [ProducesResponseType(typeof(DeleteStudentResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(StudentDoesNotExistException), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                DeleteStudentRequest request = new DeleteStudentRequest
+                {
+                    Id = id
+                };
+                var response = await Mediator.Send(request);
+                return Ok(response);
+            }
+            catch (StudentDoesNotExistException ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
     }
 }

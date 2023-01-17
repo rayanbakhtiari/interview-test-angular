@@ -1,7 +1,9 @@
+import { CreateStudentRequest, StudentService } from './../student.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-student',
@@ -10,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class StudentComponent implements OnInit {
   studentForm: FormGroup;
-  constructor(private formBuilder: FormBuilder,private http: HttpClient,@Inject('BASE_URL') private baseUrl: string,
+  constructor(private formBuilder: FormBuilder,private studentService: StudentService,
              private router: Router) {
     this.createForm();
   }
@@ -29,8 +31,7 @@ export class StudentComponent implements OnInit {
   {
     if (this.studentForm.valid) {
       var student: CreateStudentRequest = this.studentForm.value;
-      var url = this.baseUrl + 'students';
-      this.http.post<CreateStudentResponse>(url, student).subscribe(result => {
+      this.studentService.addStudent(student).pipe(take(1)).subscribe(result => {
         this.router.navigateByUrl("");
       }, error => console.error(error));
       console.log("saved", this.studentForm.getRawValue());
@@ -40,12 +41,5 @@ export class StudentComponent implements OnInit {
 }
 interface CreateStudentResponse {
   status: boolean;
-}
-interface CreateStudentRequest {
-  firstName:	string;
-  lastName:	string;
-  email:	string;
-  major:	string;
-  averageGrade:number;
 }
 
