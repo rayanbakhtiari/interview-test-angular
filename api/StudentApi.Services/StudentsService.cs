@@ -9,7 +9,7 @@ namespace StudentApi.Services
 {
     public class StudentsService : IStudentsService
     {
-        public List<Student> students = new List<Student>();
+        public static List<Student> students = new List<Student>();
 
         public StudentsService()
         {
@@ -18,14 +18,16 @@ namespace StudentApi.Services
                 FirstName = "Marty",
                 LastName = "McFly",
                 Email = "back.future@test.com",
-                Major = "History"
+                Major = "History",
+                AverageGrade = 18.5M //Average from 0 - 20
             });
 
             students.Add(new Student {
                 FirstName = "Emmett",
                 LastName = "Brown",
                 Email = "dr.brown@test.com",
-                Major = "Physics"
+                Major = "Physics",
+                AverageGrade = 15.5M //Average from 0 - 20
             });
 
             students.Add(new Student
@@ -33,7 +35,8 @@ namespace StudentApi.Services
                 FirstName = "Biff",
                 LastName = "Tannen",
                 Email = "biff@test.com",
-                Major = "PE"
+                Major = "PE",
+                AverageGrade = 17.0M //Average from 0 - 20
             });
         }
 
