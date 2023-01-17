@@ -18,7 +18,9 @@
       <td>{{ student.lastName }}</td>
       <td>{{ student.email }}</td>
       <td>{{ student.major }}</td>
-      <td>{{ student.averageGrade }}</td>
+      <td [ngClass]="{'green-grade': student.averageGrade >= 80,
+      'orange-grade': student.averageGrade >= 50 && student.averageGrade < 80,
+      'red-grade': student.averageGrade < 50}">{{ student.averageGrade }}</td>
     </tr>
   </tbody>
 </table>

@@ -17,3 +17,15 @@ code {
 .alert-text {
   color: #f03529;
 }
+.green-grade
+{
+  color: green;
+}
+.orange-grade
+{
+  color: orange;
+}
+.red-grade
+{
+  color: red;
+}
