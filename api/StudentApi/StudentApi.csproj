@@ -27,6 +27,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\CreateStudentRequest.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\StudentApi.Mediatr\StudentApi.Mediatr.csproj" />
     <ProjectReference Include="..\StudentApi.Models\StudentApi.Models.csproj" />
     <ProjectReference Include="..\StudentApi.Services\StudentApi.Services.csproj" />

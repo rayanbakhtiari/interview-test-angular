@@ -20,6 +20,7 @@ import { HomeComponent } from './home/home.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path:'student', loadChildren: () => import('./student/student.module').then(m => m.StudentModule)}
     ])
   ],
   providers: [],
